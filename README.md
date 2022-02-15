@@ -16,9 +16,9 @@ Around 2 hours.
 ### Tests
 
 I verified that the JAVA part was working with "testing" from the main.
-I didn't build a database to check the SQL querries.
+I created a simple database using Xampp to check SQL querries.
 
 ### Difficulties
 
-In the JAVA part, "la forme d'un singleton". 
+In the JAVA part, "la forme d'un singleton" was something I didn't know. 
 In the SQL part, COALESCE to avoid having a NULL when no rows are returned.
