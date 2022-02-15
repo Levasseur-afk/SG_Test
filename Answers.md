@@ -10,7 +10,7 @@ Si on ne met rien dans finally alors la **connexion à la base de donnée ne ser
 # SQL
 
 1) ```sql
-   SELECT COUNT(*) FROM
+   SELECT COALESCE(COUNT(*), 0) FROM
    DEPARTEMENT LEFT JOIN DEP_ECOLE ON DEPARTEMENT.n = DEP_ECOLE.n_Departement
    LEFT JOIN ECOLE ON DEP_ECOLE.n_Ecole = ECOLE.n
    WHERE DEPARTEMENT.nom LIKE 'Ain';
@@ -27,15 +27,18 @@ Si on ne met rien dans finally alors la **connexion à la base de donnée ne ser
    
 3) ```sql
    SELECT ECOLE.nom FROM 
-   ECOLE LEFT JOIN ECOLE.Type_ID = TYPE_ECOLE.Nom_Type
+   ECOLE LEFT JOIN TYPE_ECOLE ON ECOLE.Type_ID = TYPE_ECOLE.Nom_Type
    WHERE TYPE_ECOLE.Nom_Type LIKE 'Collège';
    ```
    
-4) ```sql 
+4) ```sql
+   SELECT COALESCE(SUM(ELEVE.Argent), 0) AS Money FROM 
+   ECOLE LEFT JOIN ELEVE ON ECOLE.n = ELEVE.n_Ecole
+   WHERE ECOLE.Nom LIKE 'Collège Garde';
    ```
    
 5) ```sql
-   ```
-   
-6) ```sql
+   SELECT  ECOLE.name, COALESCE(SUM(ELEVE.Argent), 0) AS Money FROM
+   ECOLE LEFT JOIN ELEVE ON ECOLE.n = ELEVE.n_Ecole
+   GROUP BY ECOLE.n;
    ```
